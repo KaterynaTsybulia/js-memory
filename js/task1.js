@@ -1,24 +1,13 @@
-// function getTime(minutes) {
-//   const hour = Number.parseInt(minutes / 60);
-//   const minutesOne = minutes % 60;
-//   const totalMinutes = `${hour}:${minutesOne}`;
-//   return totalMinutes;
-// }
+// Напишіть функцію convertMilesToKilometers, яка приймає відстань у милях як аргумент і повертає відстань у кілометрах.
+// Одна миля відповідає приблизно 1.60934 кілометрам.
 
-// function getTime(minutes) {
-//   const hour = Number.parseInt(minutes / 60);
-//   const minutesOne = minutes % 60;
-//   return `${hour.toString().padStart(2, '0')}:${minutesOne.toString().padStart(2, '0')}`;
-// }
+function convertMilesToKilometers(mill) {
+  const DIFFERENCE_IN_KILOMETERS = 1.60934;
 
-function getTime(minutes) {
-  const hour = Math.floor(minutes / 60);
-  const minutesOne = minutes % 60;
-  return `${hour.toString().padStart(2, '0')}:${minutesOne.toString().padStart(2, '0')}`;
+  const textPr = Number(prompt(`How ${mill} miles in km? `));
+  const kmrs = Math.floor(mill * DIFFERENCE_IN_KILOMETERS);
+
+  return textPr === kmrs;
 }
 
-console.log(getTime(5)); // 00:05
-console.log(getTime(65)); // 01:05
-console.log(getTime(70)); // 01:10
-console.log(getTime(450)); // 07:30
-console.log(getTime(1441)); // 24:01
+console.log(convertMilesToKilometers(5));
