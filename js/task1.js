@@ -1,13 +1,7 @@
-// Напишіть функцію convertMilesToKilometers, яка приймає відстань у милях як аргумент і повертає відстань у кілометрах.
-// Одна миля відповідає приблизно 1.60934 кілометрам.
+const message = prompt('Яка офіційнв назва JS?');
 
-function convertMilesToKilometers(mill) {
-  const DIFFERENCE_IN_KILOMETERS = 1.60934;
-
-  const textPr = Number(prompt(`How ${mill} miles in km? `));
-  const kmrs = Math.floor(mill * DIFFERENCE_IN_KILOMETERS);
-
-  return textPr === kmrs;
+if (message.trim() === `ESMAscript`) {
+  alert('Вірно');
+} else {
+  alert(`ESMAscript`);
 }
-
-console.log(convertMilesToKilometers(5));
