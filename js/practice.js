@@ -211,17 +211,17 @@ if (login === "Admin") {
 // console.log(checkBrackets(someFn));
 
 // Напиши функцію, яка приймає два масиви і повертає массив спільних значень
-const firstArray = [1, 2, 3, 7, 5];
-const secondArray = [3, 5, 4, 2, 9];
+// const firstArray = [1, 2, 3, 7, 5];
+// const secondArray = [3, 5, 4, 2, 9];
 
-function commonNumbers(arr1, arr2) {
-  const commonArray = [];
+// function commonNumbers(arr1, arr2) {
+//   const commonArray = [];
 
-  for (const number of arr1) {
-    if (arr2.includes(number)) {
-      commonArray.push(number);
-    }
-  }
-  return commonArray;
-}
-commonNumbers(firstArray, secondArray);
+//   for (const number of arr1) {
+//     if (arr2.includes(number)) {
+//       commonArray.push(number);
+//     }
+//   }
+//   return commonArray;
+// }
+// commonNumbers(firstArray, secondArray);
