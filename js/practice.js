@@ -93,9 +93,9 @@ if (login === "Admin") {
 // }
 // console.log(calcTotalPrice(stones, ''));
 
-// *? Напишіть функцію, яка приймає массив об'єктів і повертає новий массив
-// *? Зробіть знижку 20 % на всі фрукти у масиві
-// *? Надайте ід для кожного продукту
+//  Напишіть функцію, яка приймає массив об'єктів і повертає новий массив
+// Зробіть знижку 20 % на всі фрукти у масиві
+//  Надайте ід для кожного продукту
 // */
 
 // const fruits = [
@@ -225,3 +225,257 @@ if (login === "Admin") {
 //   return commonArray;
 // }
 // commonNumbers(firstArray, secondArray);
+
+//  Напишіть функцію, яка приймає массив об'єктів і повертає новий массив
+//  Зробіть знижку 20 % на всі фрукти у масиві
+//  Надайте ід для кожного продукту
+// */
+
+// const fruits = [
+//   { name: 'apple', price: 200 },
+//   { name: 'orange', price: 300 },
+//   { name: 'grapes', price: 750 },
+// ];
+
+// const newfruits = array =>
+//   array.map((fruit, idx) => {
+//     return { ...fruit, price: fruit.price * 0.8, id: idx + 1 };
+//   });
+// console.log(newfruits(fruits));
+
+// Створити клас Worker, у якого є властивості name, age, salary.
+//У класу Worker є метод getSalary.
+//Створити клас TopLevelWorker, у якого є властивість hierarchyLevel
+//і який успадковує клас Worker, додаючи метод getHierarchyLevel
+
+// class Worker {
+//   constructor(name, age, salary) {
+//     this.name = name;
+//     this.age = age;
+//     this.salary = salary;
+//   }
+//   getSalary() {
+//     return this.salary;
+//   }
+// }
+
+// class TopLevelWorker extends Worker {
+//   constructor(name, age, salary, hierarchyLevel) {
+//     super(name, age, salary);
+//     this.hierarchyLevel = hierarchyLevel;
+//   }
+//   getHierarchyLevel() {
+//     return this.hierarchyLevel;
+//   }
+// }
+
+// const newWorker = new TopLevelWorker('Anna', 20, 2000, 'top');
+// console.log(newWorker);
+
+/**
+ * Напиши клас Client який створює об'єкт
+ * з ​​властивостями login email
+ * Оголоси приватні властивості #login #email,
+ * доступ до яких зроби через геттер та сеттер login email
+ */
+
+// class Client {
+//   #login;
+//   #email;
+//   constructor(login, email) {
+//     this.#login = login;
+//     this.#email = email;
+//   }
+
+//   get login() {
+//     return this.#login;
+//   }
+
+//   set login(newLogin) {
+//     return (this.#login = newLogin);
+//   }
+
+//   get email() {
+//     return this.#email;
+//   }
+
+//   set email(newEmail) {
+//     return (this.#email = newEmail);
+//   }
+// }
+
+// const newClient = new Client('Anna', 'anna@gmail.com');
+// console.log(newClient.login);
+// console.log(newClient.email);
+// newClient.login = 'Kate';
+// console.log(newClient.login);
+
+// Напиши клас Product з приватними властивостями #name і #price.
+// Зроби геттери для обох, а в сеттері price додай перевірку:
+// ціна не може бути від'ємною або не числом. Якщо перевірка не пройшла,
+// виведи в консоль повідомлення і не змінюй значення
+
+// class Product {
+//   #name;
+//   #price;
+//   constructor(name, price) {
+//     this.#name = name;
+//     this.price = price;
+//   }
+
+//   get name() {
+//     return this.#name;
+//   }
+
+//   get price() {
+//     return this.#price;
+//   }
+
+//   set price(newPrice) {
+//     if (
+//       newPrice < 0 ||
+//       typeof newPrice !== 'number' ||
+//       Number.isNaN(newPrice)
+//     ) {
+//       console.log('не коректне число');
+//       return;
+//     }
+//     this.#price = newPrice;
+//   }
+// }
+
+// const p = new Product('Телефон', 500);
+// p.price = -10; // Некоректна ціна
+// p.price = 'abc'; // Некоректна ціна
+// p.price = 700;
+// console.log(p.price); // 700
+
+// Напиши клас BankAccount з приватним #balance(початково 0).
+// Додай методи deposit(amount), withdraw(amount) і геттер balance.
+// Не можна зняти більше, ніж є на рахунку.
+
+// class BankAccount {
+//   #balance;
+
+//   constructor() {
+//     this.#balance = 0;
+//   }
+
+//   get balance() {
+//     return this.#balance;
+//   }
+
+//   deposit(amount) {
+//     if (typeof amount !== 'number' || amount <= 0) {
+//       console.log('Некоректна сума');
+//       return;
+//     }
+//     this.#balance += amount;
+//   }
+
+//   withdraw(amount) {
+//     if (typeof amount !== 'number' || Number.isNaN(amount) || amount <= 0) {
+//       console.log('Некоректна сума');
+//       return;
+//     }
+//     if (amount > this.#balance) {
+//       console.log('Недостатньо коштів');
+//       return;
+//     }
+//     this.#balance -= amount;
+//   }
+// }
+
+// const acc = new BankAccount();
+// acc.deposit(1000);
+// console.log(acc.balance); // 1000
+// acc.withdraw(300);
+// console.log(acc.balance); // 700
+// acc.withdraw(5000); // Недостатньо коштів
+// acc.withdraw(-5); // Некоректна сума
+// console.log(acc.balance); // 700
+
+// Додай до класу Client статичну властивість count,
+//   яка рахує, скільки об'єктів створено.
+//   Також додай статичний метод Client.getCount().
+
+// class Client {
+//   static #count = 0;
+//   #email;
+//   #name;
+//   constructor(email, name) {
+//     this.#email = email;
+//     this.#name = name;
+
+//     Client.#count++;
+//   }
+
+//   static getCount() {
+//     return this.#count;
+//   }
+// }
+
+// const c1 = new Client('anna@gmail.com', 'Anna');
+// const c2 = new Client('kate@gmail.com', 'Kate');
+// console.log(Client.getCount()); // 2
+
+// Завдання: напиши клас Product, у якого є приватні властивості name і price.
+// Додай статичну приватну властивість count, яка рахує, скільки товарів створено.
+// Додай статичний метод getCount(), який повертає це число.
+
+// Підказка по кроках.Спочатку оголоси статичний лічильник зі значенням нуль.
+// Потім у конструкторі збережи name і price, а наступним рядком збільшуй лічильник,
+//   звертаючись до нього через ім'я класу, Product.
+//   І наприкінці напиши статичний метод, який просто повертає лічильник.
+
+// Щоб перевірити, створи три товари і виклич Product.getCount(), має вийти три.
+
+// Зверни увагу, це майже копія Client: змінюється лише назва класу і назви властивостей.
+// Саме так і закріплюється шаблон.Спробуй написати сама, а я перегляну.
+
+// class Product {
+//   #name;
+//   #price;
+
+//   static #count = 0;
+//   static #products = [];
+//   // static #amount = 0;
+
+//   constructor(name, price) {
+//     this.#name = name;
+//     this.#price = price;
+//     Product.#count++;
+//     Product.#products.push(this);
+//     // Product.#amount += price;
+//   }
+
+//   get name() {
+//     return this.#name;
+//   }
+//   get price() {
+//     return this.#price;
+//   }
+//   static getCount() {
+//     return Product.#count;
+//   }
+
+//   static getNames() {
+//     return Product.#products.map(product => product.name);
+//   }
+
+//   // static getAmount() {
+//   //   return Product.#amount;
+//   // }
+
+//   static getAmount() {
+//     return Product.#products.reduce((sum, product) => sum + product.price, 0);
+//   }
+// }
+
+// const p1 = new Product('Телефон', 500);
+// const p2 = new Product('Ноутбук', 1200);
+// const p3 = new Product('Мишка', 20);
+
+// console.log(Product.getCount()); // 3
+// console.log(Product.getNames()); // ['Телефон', 'Ноутбук', 'Мишка']
+// console.log(Product.getAmount()); // 1720
