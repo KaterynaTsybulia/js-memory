@@ -741,79 +741,142 @@ if (login === "Admin") {
 // Звичайний метод isGood(), який повертає true, якщо рейтинг 7 або більше, і false, якщо менше.
 // Звичайний метод changeRating(newRating), який міняє рейтинг на новий.
 
-class Movie {
-  #title;
-  #rating;
-  static #movies = [];
+// class Movie {
+//   #title;
+//   #rating;
+//   static #movies = [];
 
-  constructor(title, rating) {
-    this.title = title;
-    this.rating = rating;
-    Movie.#movies.push(this);
-  }
+//   constructor(title, rating) {
+//     this.title = title;
+//     this.rating = rating;
+//     Movie.#movies.push(this);
+//   }
 
-  get title() {
-    return this.#title;
-  }
+//   get title() {
+//     return this.#title;
+//   }
 
-  get rating() {
-    return this.#rating;
-  }
+//   get rating() {
+//     return this.#rating;
+//   }
 
-  set title(newTitle) {
-    if (typeof newTitle !== 'string' || newTitle.length < 1) {
-      console.log('Newtitle must have 1 length');
-      return;
-    }
-    this.#title = newTitle;
-  }
+//   set title(newTitle) {
+//     if (typeof newTitle !== 'string' || newTitle.length < 1) {
+//       console.log('Newtitle must have 1 length');
+//       return;
+//     }
+//     this.#title = newTitle;
+//   }
 
-  set rating(newRating) {
-    if (
-      typeof newRating !== 'number' ||
-      Number.isNaN(newRating) ||
-      newRating < 1 ||
-      newRating > 10
-    ) {
-      console.log('newRating must in 1 for 10');
-      return;
-    }
-    this.#rating = newRating;
-  }
+//   set rating(newRating) {
+//     if (
+//       typeof newRating !== 'number' ||
+//       Number.isNaN(newRating) ||
+//       newRating < 1 ||
+//       newRating > 10
+//     ) {
+//       console.log('newRating must in 1 for 10');
+//       return;
+//     }
+//     this.#rating = newRating;
+//   }
 
-  static getTitles() {
-    return Movie.#movies.map(movie => movie.title);
-  }
+//   static getTitles() {
+//     return Movie.#movies.map(movie => movie.title);
+//   }
 
-  static getAverageRating() {
-    return (
-      Movie.#movies.reduce((sum, movie) => sum + movie.rating, 0) /
-      Movie.#movies.length
-    );
-  }
+//   static getAverageRating() {
+//     return (
+//       Movie.#movies.reduce((sum, movie) => sum + movie.rating, 0) /
+//       Movie.#movies.length
+//     );
+//   }
 
-  isGood() {
-    return this.rating >= 7;
-  }
+//   isGood() {
+//     return this.rating >= 7;
+//   }
 
-  changeRating(newRating) {
-    this.rating = newRating;
-  }
-}
+//   changeRating(newRating) {
+//     this.rating = newRating;
+//   }
+// }
 
-const m1 = new Movie('Інтерстеллар', 9);
-const m2 = new Movie('Тітанік', 7);
-const m3 = new Movie('Нудне кіно', 4);
+// const m1 = new Movie('Інтерстеллар', 9);
+// const m2 = new Movie('Тітанік', 7);
+// const m3 = new Movie('Нудне кіно', 4);
 
-console.log(Movie.getTitles()); // ['Інтерстеллар', 'Тітанік', 'Нудне кіно']
-console.log(Movie.getAverageRating()); // 6.666...
+// console.log(Movie.getTitles()); // ['Інтерстеллар', 'Тітанік', 'Нудне кіно']
+// console.log(Movie.getAverageRating()); // 6.666...
 
-console.log(m1.isGood()); // true
-console.log(m3.isGood()); // false
+// console.log(m1.isGood()); // true
+// console.log(m3.isGood()); // false
 
-m3.changeRating(8);
-console.log(m3.rating); // 8
-console.log(m3.isGood()); // true
+// m3.changeRating(8);
+// console.log(m3.rating); // 8
+// console.log(m3.isGood()); // true
 
-m2.rating = 15; // повідомлення про помилку
-console.log(m2.rating); // 7
+// m2.rating = 15; // повідомлення про помилку
+// console.log(m2.rating); // 7
+
+// 1. Оператор new
+
+//   Напиши клас Dog з name(звичайна властивість, без #).
+// Створи двох собак через new.Виведи в консоль обох і перевір:
+
+// class Dog {
+//   name;
+// }
+
+// class User {
+//   name;
+// }
+
+// const dog1 = new User('Bob');
+// const dog2 = new Dog('Bob');
+
+// console.log(dog1 === dog2); // фолс, тому що  знак порівняя, а це два різних об'єкта
+// console.log(dog1 instanceof Dog); // так, тому що,dog1 був створенний від Dog, тобто dog1 включає Dog
+
+// Своїми словами: чому це два різні об'єкти, хоча створені з одного класу?
+
+// 2. Об'єкт параметрів
+
+// Перероби Client так, щоб конструктор приймав один об'єкт:
+
+// class Client {
+//   #login;
+//   #email;
+
+//   constructor(params) {
+//     this.email = params.email;
+//     this.login = params.login;
+//   }
+
+//   get email() {
+//     return this.#email;
+//   }
+
+//   get login() {
+//     return this.#login;
+//   }
+
+//   set email(newEmail) {
+//     this.#email = newEmail;
+//   }
+//   set login(newLogin) {
+//     this.#login = newLogin;
+//   }
+// }
+
+// const c = new Client({ login: 'Anna', email: 'anna@gmail.com' });
+// console.log(c);
+
+// const c1 = new Client({ login: 'Anna', email: 'anna@gmail.com' });
+// const c2 = new Client({ email: 'kate@gmail.com', login: 'Kate' });
+
+// console.log(c1.login, c1.email); // Anna anna@gmail.com
+// console.log(c2.login, c2.email); // Kate kate@gmail.com
+
+// Приватні #login і #email, геттери і сеттери, як раніше.
+//   Перевір, що порядок ключів в об'єкті не впливає:
+// поміняй email і login місцями, результат має бути той самий.
