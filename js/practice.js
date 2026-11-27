@@ -727,3 +727,93 @@ if (login === "Admin") {
 //   Без дужок це get / set.З дужками це звичайний метод, без get і set.
 // Решітка чи ні ? Всередині сеттера пишемо this.#pages, бо туди вже потрапило перевірене значення.
 // Скрізь деінде(конструктор, інші методи) пишемо this.pages, щоб спрацювала перевірка.
+
+// Клас Movie (фільм)
+
+// Приватні властивості #title і #rating (рейтинг).
+// Геттери для обох.
+// Сеттер title: це має бути рядок, у якому щонайменше 1 символ.
+// Сеттер rating: це має бути число від 1 до 10.
+// Конструктор використовує обидва сеттери.
+// Статична приватна властивість #movies (масив), у яку конструктор додає кожен новий фільм.
+// Статичний метод getTitles(), що повертає масив назв (map).
+// Статичний метод getAverageRating(), що повертає середній рейтинг усіх фільмів (reduce, а потім поділити на кількість).
+// Звичайний метод isGood(), який повертає true, якщо рейтинг 7 або більше, і false, якщо менше.
+// Звичайний метод changeRating(newRating), який міняє рейтинг на новий.
+
+class Movie {
+  #title;
+  #rating;
+  static #movies = [];
+
+  constructor(title, rating) {
+    this.title = title;
+    this.rating = rating;
+    Movie.#movies.push(this);
+  }
+
+  get title() {
+    return this.#title;
+  }
+
+  get rating() {
+    return this.#rating;
+  }
+
+  set title(newTitle) {
+    if (typeof newTitle !== 'string' || newTitle.length < 1) {
+      console.log('Newtitle must have 1 length');
+      return;
+    }
+    this.#title = newTitle;
+  }
+
+  set rating(newRating) {
+    if (
+      typeof newRating !== 'number' ||
+      Number.isNaN(newRating) ||
+      newRating < 1 ||
+      newRating > 10
+    ) {
+      console.log('newRating must in 1 for 10');
+      return;
+    }
+    this.#rating = newRating;
+  }
+
+  static getTitles() {
+    return Movie.#movies.map(movie => movie.title);
+  }
+
+  static getAverageRating() {
+    return (
+      Movie.#movies.reduce((sum, movie) => sum + movie.rating, 0) /
+      Movie.#movies.length
+    );
+  }
+
+  isGood() {
+    return this.rating >= 7;
+  }
+
+  changeRating(newRating) {
+    this.rating = newRating;
+  }
+}
+
+const m1 = new Movie('Інтерстеллар', 9);
+const m2 = new Movie('Тітанік', 7);
+const m3 = new Movie('Нудне кіно', 4);
+
+console.log(Movie.getTitles()); // ['Інтерстеллар', 'Тітанік', 'Нудне кіно']
+console.log(Movie.getAverageRating()); // 6.666...
+
+console.log(m1.isGood()); // true
+console.log(m3.isGood()); // false
+
+m3.changeRating(8);
+console.log(m3.rating); // 8
+console.log(m3.isGood()); // true
+
+m2.rating = 15; // повідомлення про помилку
+console.log(m2.rating); // 7
