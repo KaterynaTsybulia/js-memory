@@ -479,3 +479,251 @@ if (login === "Admin") {
 // console.log(Product.getCount()); // 3
 // console.log(Product.getNames()); // ['Телефон', 'Ноутбук', 'Мишка']
 // console.log(Product.getAmount()); // 1720
+
+// Клас Student
+// Приватні властивості #name і #grade (оцінка).
+// Геттери для name і grade.
+// Сеттер grade з перевіркою: оцінка має бути числом від 1 до 12. Якщо ні, виведи в консоль повідомлення і не змінюй значення.
+// Конструктор має використовувати сеттер grade (пам'ятаєш, чому this.grade, а не this.#grade?).
+// Статична приватна властивість #students (масив), у яку конструктор додає кожного нового студента.
+// Статичний метод getNames(), що повертає масив імен усіх студентів (map).
+// Статичний метод getAverageGrade(), що повертає середню оцінку всіх студентів (reduce, а потім поділити на кількість).
+
+// class Student {
+//   #name;
+//   #grade;
+
+//   static #students = [];
+
+//   constructor(name, grade) {
+//     this.#name = name;
+//     this.grade = grade;
+//     Student.#students.push(this);
+//   }
+
+//   get name() {
+//     return this.#name;
+//   }
+//   get grade() {
+//     return this.#grade;
+//   }
+
+//   set grade(newGrade) {
+//     if (
+//       typeof newGrade !== 'number' ||
+//       Number.isNaN(newGrade) ||
+//       newGrade <= 0 ||
+//       newGrade > 12
+//     ) {
+//       console.log('Число повинно бути від 1 до 12');
+//       return;
+//     }
+//     this.#grade = newGrade;
+//   }
+
+//   static getNames() {
+//     return Student.#students.map(student => student.name);
+//   }
+
+//   static getAverageGrade() {
+//     return (
+//       Student.#students.reduce((sum, student) => sum + student.grade, 0) /
+//       Student.#students.length
+//     );
+//   }
+// }
+
+// const s1 = new Student('Anna', 10);
+// const s2 = new Student('Oleg', 8);
+// const s3 = new Student('Kate', 12);
+
+// console.log(Student.getNames()); // ['Anna', 'Oleg', 'Kate']
+// console.log(Student.getAverageGrade()); // 10
+
+// s1.grade = 15; // повідомлення про помилку
+// console.log(s1.grade); // 10, не змінилось
+
+// Підказки:
+
+// Середнє це сума, поділена на кількість: сума / Student.#students.length.
+// Перевірка оцінки схожа на перевірку ціни в Product: відсіюємо погане(не число, менше 1, більше 12),
+//   робимо return, а присвоєння лишаємо наприкінці.
+
+// Клас Employee (працівник)
+
+// Приватні властивості #name і #salary (зарплата).
+// Геттери для обох.
+// Сеттер name з перевіркою: це має бути рядок, у якому щонайменше 2 символи.
+// Якщо ні, виведи повідомлення в консоль і не змінюй значення.
+//   Підказка: довжина рядка це newName.length.
+// Сеттер salary з перевіркою: це має бути число більше 0.
+// Конструктор має використовувати обидва сеттери.
+//   Пам'ятаєш, this.name чи this.#name?
+// Статична приватна властивість #employees (масив), у яку конструктор додає кожного нового працівника.
+// Статичний метод getNames(), що повертає масив імен (map).
+// Статичний метод getTotalSalary(), що повертає суму всіх зарплат (reduce).
+// Звичайний метод raiseSalary(percent), який збільшує зарплату на вказаний відсоток.
+//   Наприклад, для зарплати 1000 і raiseSalary(10) вийде 1100. Перевір, що percent це число більше 0.
+
+// class Employee {
+//   #name;
+//   #salary;
+//   static #employees = [];
+
+//   constructor(name, salary) {
+//     this.name = name;
+//     this.salary = salary;
+//     Employee.#employees.push(this);
+//   }
+
+//   get name() {
+//     return this.#name;
+//   }
+
+//   get salary() {
+//     return this.#salary;
+//   }
+//   set name(newName) {
+//     if (typeof newName !== 'string' || newName.length < 2) {
+//       console.log("Ім'я повинно складатися щонайменше 2 символи");
+//       return;
+//     }
+//     this.#name = newName;
+//   }
+
+//   set salary(newSalary) {
+//     if (
+//       typeof newSalary !== 'number' ||
+//       Number.isNaN(newSalary) ||
+//       newSalary <= 0
+//     ) {
+//       console.log('Сумма не пыдходить');
+//       return;
+//     }
+//     this.#salary = newSalary;
+//   }
+
+//   static getNames() {
+//     return Employee.#employees.map(employee => employee.name);
+//   }
+
+//   static getTotalSalary() {
+//     return Employee.#employees.reduce(
+//       (sum, employee) => sum + employee.salary,
+//       0
+//     );
+//   }
+
+//   raiseSalary(percent) {
+//     if (typeof percent !== 'number' || Number.isNaN(percent) || percent <= 0) {
+//       console.log('Відсоток повинен бути більше 0');
+//       return;
+//     }
+//     this.salary = this.salary + (this.salary * percent) / 100;
+//   }
+// }
+
+// const e1 = new Employee('Anna', 1000);
+// const e2 = new Employee('Oleg', 2000);
+// const e3 = new Employee('Kate', 1500);
+
+// console.log(Employee.getNames()); // ['Anna', 'Oleg', 'Kate']
+// console.log(Employee.getTotalSalary()); // 4500
+
+// e1.raiseSalary(10);
+// console.log(e1.salary); // 1100
+
+// e2.name = 'A'; // повідомлення про помилку
+// console.log(e2.name); // 'Oleg', не змінилось
+
+// У пункті 9 нову зарплату можна порахувати так: this.salary + this.salary * percent / 100,
+//   а потім присвоїти через this.salary = ..., щоб спрацювала перевірка.
+// Для name перевірка схожа на ту, що була для grade, тільки погані значення інші: не рядок, або newName.length < 2.
+
+// Клас Book (книга)
+
+// Приватні властивості #title і #pages (кількість сторінок).
+// Геттери для обох.
+// Сеттер title: це має бути рядок, у якому щонайменше 1 символ.
+// Сеттер pages: це має бути число більше 0.
+// Конструктор використовує обидва сеттери.
+// Статична приватна властивість #books (масив), у яку конструктор додає кожну нову книгу.
+// Статичний метод getTitles(), що повертає масив назв (map).
+// Статичний метод getTotalPages(), що повертає суму сторінок усіх книг (reduce).
+// Звичайний метод addPages(count), який збільшує кількість сторінок на count. Перевір, що count це число більше 0.
+
+// class Book {
+//   #title;
+//   #pages;
+//   static #books = [];
+
+//   constructor(title, pages) {
+//     this.title = title;
+//     this.pages = pages;
+//     Book.#books.push(this);
+//   }
+
+//   get title() {
+//     return this.#title;
+//   }
+
+//   get pages() {
+//     return this.#pages;
+//   }
+
+//   set title(newTitle) {
+//     if (typeof newTitle !== 'string' || newTitle.length < 1) {
+//       console.log('Заголовок повинен бути від 1 символа');
+//       return;
+//     }
+//     this.#title = newTitle;
+//   }
+
+//   set pages(newPages) {
+//     if (
+//       typeof newPages !== 'number' ||
+//       Number.isNaN(newPages) ||
+//       newPages <= 0
+//     ) {
+//       console.log('Сторінок повинно бути бути від 1');
+//       return;
+//     }
+//     this.#pages = newPages;
+//   }
+
+//   static getTitles() {
+//     return Book.#books.map(book => book.title);
+//   }
+
+//   static getTotalPages() {
+//     return Book.#books.reduce((sum, book) => sum + book.pages, 0);
+//   }
+
+//   addPages(count) {
+//     if (typeof count !== 'number' || Number.isNaN(count) || count <= 0) {
+//       console.log('Множном повинен бути більше 0');
+//       return;
+//     }
+//     this.pages += count;
+//   }
+// }
+
+// const b1 = new Book('Кобзар', 300);
+// const b2 = new Book('Intermezzo', 150);
+// const b3 = new Book('Лісова пісня', 200);
+
+// console.log(Book.getTitles()); // ['Кобзар', 'Intermezzo', 'Лісова пісня']
+// console.log(Book.getTotalPages()); // 650
+
+// b1.addPages(50);
+// console.log(b1.pages); // 350
+
+// b2.pages = -5; // повідомлення про помилку
+// console.log(b2.pages); // 150
+
+// Це стосується однієї книги чи всіх разом ? Одна книга означає звичайний метод, без static.
+// Усі разом означає static, і звертаємось через Book.
+// Це читають і присвоюють без дужок(b1.pages) чи викликають як дію(b1.addPages(50)) ?
+//   Без дужок це get / set.З дужками це звичайний метод, без get і set.
+// Решітка чи ні ? Всередині сеттера пишемо this.#pages, бо туди вже потрапило перевірене значення.
+// Скрізь деінде(конструктор, інші методи) пишемо this.pages, щоб спрацювала перевірка.
